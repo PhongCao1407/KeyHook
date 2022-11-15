@@ -43,3 +43,4 @@ if __name__ == '__main__':
 
     print("Exiting normally.")
     print("hello")
+    print('hello2')
