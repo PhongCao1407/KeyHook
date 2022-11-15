@@ -42,3 +42,4 @@ if __name__ == '__main__':
         print ("Inside the session, woo hoo.")
 
     print("Exiting normally.")
+    print("hello")
