@@ -8,4 +8,4 @@ class Hook(Base):
     hook_id = Column('hook_id', Integer, Identity(start=1, cycle=True), nullable=False, primary_key=True)
 
     def __init__(self):
-        #There is nothing to initialize here right?
+    #There is nothing to initialize here right?
