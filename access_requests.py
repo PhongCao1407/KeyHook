@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Identity, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship
 from orm_base import Base
 
-class Access_requests(Base):
+class Access_request(Base):
     __tablename__ = "access_requests"
     employee_id = Column('employee_id', Integer, ForeignKey("employees.employee_id"), Identity(start=1, cycle=True),nullable=False, primary_key=True)
     room_number = Column('room_number', Integer, ForeignKey("rooms.number"), Identity(start=1, cycle=True),nullable=False, primary_key=True)
