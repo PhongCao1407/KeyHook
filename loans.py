@@ -30,6 +30,7 @@ class Loan_losses(Base):
         self.fine_amount = fine_amount
         self.reported_loss_date = reported_loss_date
 
+
 class Loan_returns(Base):
     __tablename__ = "loan_returns"
     loan_id = Column('loan_id', Integer, ForeignKey("loans.loan_id"), Identity(start=1, cycle=True),nullable=False, primary_key=True)
