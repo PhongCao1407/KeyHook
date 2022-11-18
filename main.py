@@ -20,6 +20,7 @@ from orm_base import metadata
 import logging
 
 
+
 if __name__ == '__main__':
     logging.basicConfig()
     # use the logging factory to create our first logger.
@@ -40,7 +41,10 @@ if __name__ == '__main__':
     # This way, we do not have memory leaks.
     with Session() as sess:
         print ("Inside the session, woo hoo.")
+        sess.begin()
+        for t in metadata.sorted_tables:
+            print(t)
+
 
     print("Exiting normally.")
-    print("hello")
-    print('hello2')
+
