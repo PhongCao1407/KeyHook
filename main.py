@@ -42,8 +42,46 @@ if __name__ == '__main__':
     with Session() as sess:
         print ("Inside the session, woo hoo.")
         sess.begin()
-        for t in metadata.sorted_tables:
-            print(t)
+
+        #populate tables
+
+        #Menu
+        user_in = 1
+        while user_in in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+            print("1. Create new key")
+            print("2. Request access to a given room by given Employee")
+            print("3. Issuing a key to an employee")
+            print("4. Losing a key")
+            print("5. Rooms an employee can enter")
+            print("6. Delete a key")
+            print("7. Delete an employee")
+            print("8. Add new door")
+            print("9. Update an access request for new employee")
+            print("10. Show Employees who can get into a room")
+
+            user_in = int(input())
+
+            if user_in == 1:
+                pass
+            elif user_in == 2:
+                pass
+            elif user_in == 3:
+                pass
+            elif user_in == 4:
+                pass
+            elif user_in == 5:
+                pass
+            elif user_in == 6:
+                pass
+            elif user_in == 7:
+                pass
+            elif user_in == 8:
+                pass
+            elif user_in == 9:
+                pass
+            elif user_in == 10:
+                pass
+
 
 
     print("Exiting normally.")
