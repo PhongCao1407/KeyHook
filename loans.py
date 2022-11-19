@@ -9,7 +9,7 @@ class Loans(Base):
     employee_id = Column('employee_id', Integer, ForeignKey("employees.employee_id"), nullable=False)
     key_id = Column('key_id', Integer, ForeignKey("keys.key_id"), nullable=False)
 
-    children = relationship("Loan_losses")
+    children = relationship("Loan_losses", "Loan_returns")
 
 
     def __init__(self, loan_id: Integer, start_time: Integer, employee_id: Integer, key_id: Integer):

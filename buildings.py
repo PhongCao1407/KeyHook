@@ -6,7 +6,7 @@ from rooms import Room
 class Building(Base):
     __tablename__ = "buildings"
     name = Column("name", String(50), nullable=False, primary_key=True)
-
+    children = relationship("Room")
     room_list: [Room] = relationship("rooms", back_populates="buildings", viewonly=False)
 
     def __init__(self, name: String):

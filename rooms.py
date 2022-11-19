@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from orm_base import Base
 from doors import Door
 from access_requests import Access_request
+from buildings import Building
 
 class Room(Base):
     __tablename__ = "rooms"
