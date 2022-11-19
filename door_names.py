@@ -7,6 +7,8 @@ class Door_Name(Base):
     __tablename__ = "door_names"
     name = Column("name", String(10), nullable=False, primary_key=True)
 
+    children = relationship("Door")
+
     def __init__(self, name: String):
         self.name = name
 
