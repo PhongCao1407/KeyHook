@@ -10,5 +10,7 @@ class Hook(Base):
 
     hook_door_list: [Door_Hook_Open] = relationship("door_hook_opens", back_populates="hooks", viewonly=False)
 
+    children = relationship("Key")
+
     def __init__(self):
         self.hook_door_list = []

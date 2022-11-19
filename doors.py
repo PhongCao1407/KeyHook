@@ -14,8 +14,7 @@ class Door(Base):
     door_name_list: [Door_Name] = relationship("door_names", back_populates="doors", viewonly=False)
     door_hook_list: [Door_Hook_Open] = relationship("door_hook_opens", back_populates="doors", viewonly=False)
 
-    def __init__(self, door_id: Integer, door_name: String, building_name: String, room_number: Integer):
-        self.door_id = door_id
+    def __init__(self, door_name: String, building_name: String, room_number: Integer):
         self.door_name = door_name
         self.building_name = building_name
         self.room_number = room_number
