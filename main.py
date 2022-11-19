@@ -20,9 +20,16 @@ from orm_base import metadata
 import logging
 
 # custom imports
-from keys import Key
-from hooks import Hook
+from access_requests import Access_request
 from buildings import Building
+from door_hook_opens import Door_Hook_Open
+from door_names import Door_Name
+from doors import Door
+from employees import Employees
+from hooks import Hook
+from keys import Key
+from loans import Loans, Loan_returns, Loan_losses
+from rooms import Room
 
 if __name__ == '__main__':
     logging.basicConfig()

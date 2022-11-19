@@ -11,7 +11,7 @@ class Employees(Base):
     balance = Column('balance', Integer, nullable=False)
 
     rooms_list: [Access_request] = relationship("access_requests", back_populates="employee", viewonly=False)
-    keys_list: [Loans] = relationship("loans", back_populate="employee")
+    keys_list: [Loans] = relationship("loans", back_populates="employee")
 
 
     def __init__(self, balance: Integer, name: String):
