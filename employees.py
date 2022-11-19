@@ -9,7 +9,7 @@ class Employees(Base):
     name = Column('name', String, nullable=False)
     balance = Column('balance', Integer, nullable=False)
 
-    access_request_list: [Access_request] = relationship("access_requests", back_populates="Employees", viewonly=False)
+    rooms_list: [Access_request] = relationship("access_requests", back_populates="employee", viewonly=False)
 
 
     def __init__(self, employee_id: Integer, balance: Integer, name: String):
@@ -17,4 +17,13 @@ class Employees(Base):
         self.balance = balance
         self.name = name
         self.access_request_list = []
+
+    def add_room(self, room, date):
+        for next_room in self.rooms_list:
+            if next_room == room:
+                return
+
+        access_request = Access_request(self.employee_id, room.number, room.building_name, date)
+        room.employees_list.append(access_request)
+        self.rooms_list.append(access_request)
 

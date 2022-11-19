@@ -15,6 +15,9 @@ class Access_request(Base):
     __tableargs__ = (ForeignKeyConstraint([employee_id, room_number, room_building_name],
                                           [Employees.employee_id, Room.number, Room.building_name]), {})
 
+    room = relationship('room', back_populate='rooms_list')
+    employee = relationship('employee', back_populate='employees_list')
+
     def __init__(self, employee_id: Integer, room_number: Integer, room_building_name: String, requested_date: Date):
         self.room_number = room_number
         self.room_building_name = room_building_name
