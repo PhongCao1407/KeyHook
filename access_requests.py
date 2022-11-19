@@ -10,9 +10,9 @@ class Access_request(Base):
     requested_date = Column('requested_date', Date, nullable=False, primary_key=True)
 
     room = relationship('Room', back_populates='employees_list')
-    employee = relationship('Employees', back_populates='rooms_list')
+    employee = relationship('Employee', back_populates='rooms_list')
 
-    def __init__(self, room, employee, requested_date):
+    def __init__(self, room, employee, requested_date=None):
         self.room_id = room.room_id
         self.employee_id = employee.employee_id
         self.requested_date = requested_date

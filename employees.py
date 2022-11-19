@@ -2,17 +2,16 @@ from sqlalchemy import Column, String, Identity, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship
 from orm_base import Base
 from access_requests import Access_request
-from loans import Loans
+from loans import Loan
 
-class Employees(Base):
+class Employee(Base):
     __tablename__ = "employees"
     employee_id = Column('employee_id', Integer, Identity(start=1, cycle=True),nullable=False, primary_key=True)
     name = Column('name', String, nullable=False)
     balance = Column('balance', Integer, nullable=False)
 
     rooms_list: [Access_request] = relationship("access_requests", back_populates="employee", viewonly=False)
-    keys_list: [Loans] = relationship("loans", back_populates="employee")
-
+    keys_list: [Loan] = relationship("loans", back_populates="employee", viewonly=False)
 
     def __init__(self, balance: Integer, name: String):
         self.balance = balance
@@ -34,7 +33,7 @@ class Employees(Base):
             if next_key == key:
                 return
 
-        loan = Loans(self, key, time)
+        loan = Loan(self, key, time)
         key.employees_list.append(loan)
         self.keys_list.append(loan)
 

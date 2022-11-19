@@ -20,16 +20,18 @@ from orm_base import metadata
 import logging
 
 # custom imports
-from access_requests import Access_request
 from buildings import Building
+from rooms import Room
+from employees import Employee
+from access_requests import Access_request
 from door_hook_opens import Door_Hook_Open
 from door_names import Door_Name
 from doors import Door
-from employees import Employees
+
 from hooks import Hook
 from keys import Key
-from loans import Loans, Loan_returns, Loan_losses
-from rooms import Room
+from loans import *
+
 
 if __name__ == '__main__':
     logging.basicConfig()
@@ -49,14 +51,23 @@ if __name__ == '__main__':
     # Do our database work within a context.  This makes sure that the session gets closed
     # at the end of the with, much like what it would be like if you used a with to open a file.
     # This way, we do not have memory leaks.
+
+
     with Session() as sess:
         print ("Inside the session, woo hoo.")
-        sess.begin()
 
-        buildings = sess.query(Building)
-        for building in buildings:
-            print(building.name)
-        #populate tables
+        # buildings = sess.query(Building)
+        # for building in buildings:
+        #     print(building.name)
+        #
+        # # rooms = sess.query(Room)
+        # # for room in rooms:
+        # #     print(room.building_name)
+        # #populate tables
+
+        access_requests = sess.query(Access_request)
+        for access_request in access_requests:
+            print(access_request.room_id)
 
         #Menu
         # user_in = 1
@@ -99,3 +110,29 @@ if __name__ == '__main__':
 
     print("Exiting normally.")
 
+
+
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')
+# dkfjsdkvhsjkdfhukdsfjnhskdjndsfkgjvdfskjgndfghcdfxjndfkujcn operator.attrgetter('_sa_instance_state')

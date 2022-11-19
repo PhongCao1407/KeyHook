@@ -6,15 +6,22 @@ from buildings import Building
 
 class Room(Base):
     __tablename__ = "rooms"
-    room_id = Column(Integer, Identity(start=1, cycle=True),nullable=False, primary_key=True)
-    number = Column(Integer, primary_key=True, nullable=False)
-    building_name = Column(String(50), ForeignKey('buildings.name'), primary_key=True, nullable=False)
+    room_id = Column(Integer, Identity(start=1, cycle=True), nullable=False, primary_key=True)
+    number = Column(Integer, nullable=False)
+    building_name = Column(String(50), ForeignKey('buildings.name'), nullable=False)
 
     employees_list: [Access_request] = relationship("access_requests", back_populates="room", viewonly=False)
 
-    def __init__(self, number: Integer, building_name: String):
+    building: Building = relationship("Building", back_populates="rooms")
+
+    doors = relationship("Door")
+
+    def __init__(self, number: Integer, building):
         self.number = number
+        self.building_name = building.name
         self.employees_list = []
+        self.building = building
+        self.doors = []
 
     def add_employee(self, employee, date):
         for next_employee in self.employees_list:

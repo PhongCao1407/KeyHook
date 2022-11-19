@@ -14,12 +14,17 @@ class Door(Base):
 
     room_id = Column(Integer, ForeignKey('rooms.room_id'), nullable=False)
 
+    room: Room = relationship("Room", back_populates="doors")
+    door_name = relationship("Door_Name", back_populates="doors")
+
     hooks_list: [Door_Hook_Open] = relationship("Door_Hook_Open", back_populates="door", viewonly=False)
 
     def __init__(self, door_name, room):
         self.door_name = door_name.name
         self.room_id = room.room_id
         self.hooks_list = []
+        self.room = room
+        self.door_name = door_name
 
     def add_hook(self, hook):
         for next_hook in self.hooks_list:

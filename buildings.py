@@ -6,10 +6,12 @@ from orm_base import Base
 class Building(Base):
     __tablename__ = "buildings"
     name = Column("name", String(50), nullable=False, primary_key=True)
-    children = relationship("Room")
+    rooms = relationship("Room")
 
     def __init__(self, name: String):
         self.name = name
+        self.rooms = []
+
 
     def __str__(self):
         return "Building: {name}".format(name = self.name)
