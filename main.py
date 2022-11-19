@@ -19,7 +19,10 @@ from db_connection import Session, engine
 from orm_base import metadata
 import logging
 
-
+# custom imports
+from keys import Key
+from hooks import Hook
+from buildings import Building
 
 if __name__ == '__main__':
     logging.basicConfig()
@@ -28,13 +31,13 @@ if __name__ == '__main__':
     # use the logging factory to create our second logger.
     logging.getLogger("sqlalchemy.pool").setLevel(logging.DEBUG)
 
-    metadata.drop_all(bind=engine)  # start with a clean slate while in development
+    # metadata.drop_all(bind=engine)  # start with a clean slate while in development
 
     # Create whatever tables are called for by our "Entity" classes.  The simple fact that
     # your classes that are subtypes of Base have been loaded by Python has populated
     # the metadata object with their definition.  So now we tell SQLAlchemy to create
     # those tables for us.
-    metadata.create_all(bind=engine)
+    # metadata.create_all(bind=engine)
 
     # Do our database work within a context.  This makes sure that the session gets closed
     # at the end of the with, much like what it would be like if you used a with to open a file.
@@ -43,44 +46,47 @@ if __name__ == '__main__':
         print ("Inside the session, woo hoo.")
         sess.begin()
 
+        buildings = sess.query(Building)
+        for building in buildings:
+            print(building.name)
         #populate tables
 
         #Menu
-        user_in = 1
-        while user_in in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-            print("1. Create new key")
-            print("2. Request access to a given room by given Employee")
-            print("3. Issuing a key to an employee")
-            print("4. Losing a key")
-            print("5. Rooms an employee can enter")
-            print("6. Delete a key")
-            print("7. Delete an employee")
-            print("8. Add new door")
-            print("9. Update an access request for new employee")
-            print("10. Show Employees who can get into a room")
+        # user_in = 1
+        # while user_in in set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]):
+            # print("1. Create new key")
+            # print("2. Request access to a given room by given Employee")
+            # print("3. Issuing a key to an employee")
+            # print("4. Losing a key")
+            # print("5. Rooms an employee can enter")
+            # print("6. Delete a key")
+            # print("7. Delete an employee")
+            # print("8. Add new door")
+            # print("9. Update an access request for new employee")
+            # print("10. Show Employees who can get into a room")
 
-            user_in = int(input())
-
-            if user_in == 1:
-                pass
-            elif user_in == 2:
-                pass
-            elif user_in == 3:
-                pass
-            elif user_in == 4:
-                pass
-            elif user_in == 5:
-                pass
-            elif user_in == 6:
-                pass
-            elif user_in == 7:
-                pass
-            elif user_in == 8:
-                pass
-            elif user_in == 9:
-                pass
-            elif user_in == 10:
-                pass
+            # user_in = int(input())
+            #
+            # if user_in == 1:
+            #     pass
+            # elif user_in == 2:
+            #     pass
+            # elif user_in == 3:
+            #     pass
+            # elif user_in == 4:
+            #     pass
+            # elif user_in == 5:
+            #     pass
+            # elif user_in == 6:
+            #     pass
+            # elif user_in == 7:
+            #     pass
+            # elif user_in == 8:
+            #     pass
+            # elif user_in == 9:
+            #     pass
+            # elif user_in == 10:
+            #     pass
 
 
 

@@ -6,9 +6,9 @@ from door_hook_opens import Door_Hook_Open
 
 class Hook(Base):
     __tablename__ = "hooks"
-    hook_id = Column('hook_id', Integer, Identity(start=1, cycle=True), nullable=False, primary_key=True)
+    hook_id = Column(Integer, Identity(start=1, cycle=True), nullable=False, primary_key=True)
 
-    doors_list: [Door_Hook_Open] = relationship("door_hook_opens", back_populates="hook", viewonly=False)
+    doors_list: [Door_Hook_Open] = relationship("Door_Hook_Open", back_populates="hook", viewonly=False)
 
     children = relationship("Key")
 
@@ -18,7 +18,7 @@ class Hook(Base):
     def add_door(self, door):
         for next_door in self.doors_list:
             if next_door == door:
-                return False
+                return
 
         open_door = Door_Hook_Open(self, door)
         door.hooks_list.append(open_door)

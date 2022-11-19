@@ -26,7 +26,7 @@ class Employees(Base):
             if next_room == room:
                 return
 
-        access_request = Access_request(self.employee_id, room.number, room.building_name, date)
+        access_request = Access_request(room, self, date)
         room.employees_list.append(access_request)
         self.rooms_list.append(access_request)
 
@@ -35,7 +35,7 @@ class Employees(Base):
             if next_key == key:
                 return
 
-        loan = Loans(time, self.employee_id, key.key_id)
+        loan = Loans(self, key, time)
         key.employees_list.append(loan)
         self.keys_list.append(loan)
 

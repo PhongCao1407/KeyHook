@@ -14,7 +14,7 @@ class Key(Base):
     hook_id = Column(Integer, ForeignKey('hooks.hook_id'), primary_key=False, nullable=False)
 
 
-    employees_list: [Loans] = relationship("loans", back_populate="key")
+    employees_list: [Loans] = relationship("loans", back_populates="key")
 
     def __init__(self, hook):
         self.hook_id = hook.hook_id
@@ -24,7 +24,7 @@ class Key(Base):
             if next_employee == employee:
                 return
 
-        loan = Loans(time, employee.employee_id, self.key_id)
+        loan = Loans(employee, self, time)
         employee.keys_list.append(loan)
         self.employees_list.append(loan)
 

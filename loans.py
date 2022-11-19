@@ -11,13 +11,15 @@ class Loans(Base):
 
     children = relationship("Loan_losses", "Loan_returns")
 
-    employee = relationship('employees', back_populate='keys_list')
-    key = relationship('keys', back_populate='employees_list')
+    employee = relationship('employees', back_populates='keys_list')
+    key = relationship('keys', back_populates='employees_list')
 
-    def __init__(self, loan_id: Integer, start_time: Integer, employee_id: Integer, key_id: Integer):
+    def __init__(self, employee, key, start_time):
+        self.employee_id = employee.employee_id
+        self.key_id = key.key_id
         self.start_time = start_time
-        self.employee_id = employee_id
-        self.key_id = key_id
+        self.employee = employee
+        self.key = key
 
 
 class Loan_losses(Base):
