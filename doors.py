@@ -17,7 +17,7 @@ class Door(Base):
                                           [Door_Name.name, Room.building_name, Room.number]), {})
 
     door_name_list: [Door_Name] = relationship("door_names", back_populates="doors", viewonly=False)
-    door_hook_list: [Door_Hook_Open] = relationship("door_hook_opens", back_populates="doors", viewonly=False)
+    hooks_list: [Door_Hook_Open] = relationship("door_hook_opens", back_populates="door", viewonly=False)
 
     def __init__(self, door_name: String, building_name: String, room_number: Integer):
         self.door_name = door_name
@@ -31,6 +31,15 @@ class Door(Base):
             if next_door_name == door_name:
                 return
         self.door_name_list.append(door_name)
+
+    def add_hook(self, hook):
+        for next_hook in self.hooks_list:
+            if next_hook == hook:
+                return False
+
+        open_door = Door_Hook_Open(hook, self)
+        hook.doors_list.append(open_door)
+        self.hooks_list.append(open_door)
 
     def __str__(self):
         return "Building name: {building_name}, Room number: {number}, Doors: {doors}".format(

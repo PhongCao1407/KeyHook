@@ -11,12 +11,21 @@ class Room(Base):
     building_name = Column(String(50), ForeignKey('buildings.name'), primary_key=True, nullable=False)
 
     door_list: [Door] = relationship("doors", back_populates="rooms", viewonly=False)
-    room_access_request_list: [Access_request] = relationship("access_requests", back_populates="rooms", viewonly=False)
+    employees_list: [Access_request] = relationship("access_requests", back_populates="room", viewonly=False)
 
     def __init__(self, number: Integer, building_name: String):
         self.number = number
         self.room_list = []
-        self.room_access_request_list = []
+        self.employees_list = []
+
+    def add_employee(self, employee, date):
+        for next_employee in self.employees_list:
+            if next_employee == employee:
+                return
+
+        access_request = Access_request(employee.employee_id, self.number, self.building_name, date)
+        employee.rooms_list.append(access_request)
+        self.employees_list.append(access_request)
 
     def add_door(self, door):
         for next_door in self.door_list:

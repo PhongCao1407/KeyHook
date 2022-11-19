@@ -1,8 +1,7 @@
 from sqlalchemy import Column, Integer
 from sqlalchemy import ForeignKey
 from orm_base import Base
-
-
+from sqlalchemy.orm import relationship
 
 
 class Door_Hook_Open(Base):
@@ -11,7 +10,8 @@ class Door_Hook_Open(Base):
     doors_door_id = Column(Integer, ForeignKey('doors.door_id'), primary_key=False, nullable=False)
 
 
-
+    hook = relationship('Hook', back_populate='doors_list')
+    door = relationship('Door', back_populate='hooks_list')
 
     def __init__(self, hook, door):
         self.hook_id = hook.hook_id
