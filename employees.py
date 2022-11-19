@@ -14,8 +14,7 @@ class Employees(Base):
     keys_list: [Loans] = relationship("loans", back_populate="employee")
 
 
-    def __init__(self, employee_id: Integer, balance: Integer, name: String):
-        self.employee_id = employee_id
+    def __init__(self, balance: Integer, name: String):
         self.balance = balance
         self.name = name
         self.rooms_list = []
