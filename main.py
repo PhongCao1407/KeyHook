@@ -56,18 +56,70 @@ if __name__ == '__main__':
     with Session() as sess:
         print ("Inside the session, woo hoo.")
 
-        # buildings = sess.query(Building)
-        # for building in buildings:
-        #     print(building.name)
-        #
-        # # rooms = sess.query(Room)
-        # # for room in rooms:
-        # #     print(room.building_name)
-        # #populate tables
+        print('Building')
+
+        buildings = sess.query(Building)
+        for building in buildings:
+            print(building.name)
+
+        print('Room')
+
+        rooms = sess.query(Room)
+        for room in rooms:
+            print(room.building_name)
+
+        print('Employee')
+
+        employees = sess.query(Employee)
+        for employee in employees:
+            print(employee.employee_id)
+
+        print('Access Request')
 
         access_requests = sess.query(Access_request)
         for access_request in access_requests:
             print(access_request.room_id)
+
+        print('Door')
+
+        doors = sess.query(Door)
+        for door in doors:
+            print(door.door_id)
+
+        print('Door Names')
+        door_names = sess.query(Door_Name)
+        for door_name in door_names:
+            print(door_name.name)
+
+        print('Door Hook Open')
+        door_hook_opens = sess.query(Door_Hook_Open)
+        for door_hook_open in door_hook_opens:
+            print(door_hook_open.hook_id)
+
+        print('Hook')
+        hooks = sess.query(Hook)
+        for hook in hooks:
+            print(hook.hook_id)
+
+        print('Key')
+        keys = sess.query(Key)
+        for key in keys:
+            print(key.key_id)
+
+        print('Loan')
+        loans = sess.query(Loan)
+        for loan in loans:
+            print(loan.start_time)
+
+        print('Loan losses')
+        loan_losses = sess.query(LoanLoss)
+        for loan_loss in loan_losses:
+            print(loan_loss.reported_loss_date)
+
+        print('Loan return')
+        loan_returns = sess.query(LoanReturn)
+        for loan_return in loan_returns:
+            print(loan_return.return_date)
 
         #Menu
         # user_in = 1

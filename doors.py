@@ -10,17 +10,17 @@ class Door(Base):
     __tablename__ = "doors"
     door_id = Column('door_id', Integer, Identity(start=1, cycle=True),nullable=False, primary_key=True)
 
-    door_name = Column(String(10), ForeignKey('door_names.name'), nullable=False)
+    door_name_name = Column('door_name', String(10), ForeignKey('door_names.name'), nullable=False)
 
     room_id = Column(Integer, ForeignKey('rooms.room_id'), nullable=False)
 
     room: Room = relationship("Room", back_populates="doors")
-    door_name = relationship("Door_Name", back_populates="doors")
+    door_name: Door_Name = relationship("Door_Name", back_populates="doors")
 
     hooks_list: [Door_Hook_Open] = relationship("Door_Hook_Open", back_populates="door", viewonly=False)
 
     def __init__(self, door_name, room):
-        self.door_name = door_name.name
+        self.door_name_name = door_name.name
         self.room_id = room.room_id
         self.hooks_list = []
         self.room = room

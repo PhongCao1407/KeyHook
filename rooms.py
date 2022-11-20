@@ -10,7 +10,7 @@ class Room(Base):
     number = Column(Integer, nullable=False)
     building_name = Column(String(50), ForeignKey('buildings.name'), nullable=False)
 
-    employees_list: [Access_request] = relationship("access_requests", back_populates="room", viewonly=False)
+    employees_list: [Access_request] = relationship("Access_request", back_populates="room", viewonly=False)
 
     building: Building = relationship("Building", back_populates="rooms")
 

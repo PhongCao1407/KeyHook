@@ -10,8 +10,8 @@ class Employee(Base):
     name = Column('name', String, nullable=False)
     balance = Column('balance', Integer, nullable=False)
 
-    rooms_list: [Access_request] = relationship("access_requests", back_populates="employee", viewonly=False)
-    keys_list: [Loan] = relationship("loans", back_populates="employee", viewonly=False)
+    rooms_list: [Access_request] = relationship("Access_request", back_populates="employee", viewonly=False)
+    keys_list: [Loan] = relationship("Loan", back_populates="employee", viewonly=False)
 
     def __init__(self, balance: Integer, name: String):
         self.balance = balance

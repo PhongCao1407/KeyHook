@@ -9,7 +9,7 @@ class Loan(Base):
     employee_id = Column('employee_id', Integer, ForeignKey("employees.employee_id"), nullable=False)
     key_id = Column('key_id', Integer, ForeignKey("keys.key_id"), nullable=False)
 
-    children = relationship("Loan_losses", "Loan_returns")
+
 
     employee = relationship('Employee', back_populates='keys_list')
     key = relationship('Key', back_populates='employees_list')
@@ -44,7 +44,7 @@ class LoanLoss(Base):
 class LoanReturn(Base):
     __tablename__ = "loan_returns"
     loan_id = Column('loan_id', Integer, ForeignKey("loans.loan_id"), Identity(start=1, cycle=True),nullable=False, primary_key=True)
-    return_date = Column('reported_loss_date', Date, nullable=False)
+    return_date = Column('return_date', Date, nullable=False)
 
     loan: Loan = relationship("Loan", back_populates="loan_returns")
     def __init__(self, loan, return_date: Date):
